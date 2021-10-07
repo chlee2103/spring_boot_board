@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
+<mapper namespace="sty.s01.demo.user.mapper.UserMapper">
+    <select id="selectUserInfo" resultType="UserInfo">
+        SELECT /*UserMapper.selectUserInfo*/
+            user_id
+            , user_name
+            , user_auth
+        FROM user_info
+        WHERE user_dlt_yn = 'N'
+    </select>
 </mapper>
