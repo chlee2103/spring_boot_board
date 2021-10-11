@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous" />
+    <link href="/css/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="div_login" align="center">
+    <form name="loginFrm" action="#" method="post">
+        <table>
+            <colgroup>
+                <col width="100px"><col width="210px">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" align="center"><h3>Login</h3>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>아이디</td>
+                    <td><input type="text" name="userId" id="userId" class="input id" placeholder="ID를 입력해주세요."></td>
+                    <td>
+                        &nbsp;<i class="fas fa-eraser" id="id_eraser"></i>&nbsp;
+                        <input type="checkbox" id="id_save">ID 저장</td>
+                </tr>
+                <tr>
+                    <td>패스워드</td>
+                    <td>
+                        <input type="password" name="userPw" class="input pw" id="userPw" placeholder="PW를 입력해주세요.">
+                    </td>
+                    <td>
+                        &nbsp;<i class="fas fa-eraser" id="pw_eraser"></i>&nbsp;
+                        <input type="checkbox" name="hide_btn" id="pw_hide"><span id="pw_text">PW 보이기</span></td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center">
+                        <button type="button" id="btn_login" class="btn login">로그인</button>
+                        <button type="button" id="btn_join" class="btn join" onclick="location.href='join.html'">회원가입</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        아이디와 비밀번호를 찾으시겠습니까?
+                        <button type="button" id="find_id" class="find">아이디</button>&nbsp;/
+                        <button type="button" id="find_pw" class="find">비밀번호</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+    let pw_hide = $('#pw_hide');
+    pw_hide.click(function (){
+       if(pw_hide.is(':checked')){
+           $('#pw_text').text('PW 숨기기');
+           $('#userPw').attr('type', 'text');
+       }else {
+           $('#pw_text').text('PW 보이기');
+           $('#userPw').attr('type', 'password');
+       }
+    });
+
+    $("#id_eraser").click(function (){
+       $("#userId").val("");
+    });
+    $("#pw_eraser").click(function (){
+        $("#userPw").val("");
+    });
+
+    $("#btn_login").click(function () {
+       if($("#userId").val().trim() == ""){
+           swal({
+               icon: 'warning', // Alert 타입
+               title: 'ID를 입력해주세요.',
+           });
+       }else if($("#userPw").val().trim() == ""){
+           swal({
+               icon: 'warning', // Alert 타입
+               title: 'PW를 입력해주세요.',
+           });
+       }
+    });
+
+
+    document.getElementById('find_id').addEventListener('click', findId);
+    function findId() {
+        window.open('/views/findId.html', 'pop01',  'width=500, height=400, scrollbars= 0, toolbar=0, menubar=no');
+    }
+    document.getElementById('find_pw').addEventListener('click', findPw);
+    function findPw() {
+        window.open('/views/findPw.html', 'pop02',  'width=500, height=400, scrollbars= 0, toolbar=0, menubar=no');
+    }
+
+
+
+</script>
+</body>
+</html>
